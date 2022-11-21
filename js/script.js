@@ -32,7 +32,7 @@
 
     /* [DONE] add class 'active' to the correct article */
     rightArticle.classList.add('active');
-  }
+  };
   
   /* 
   const links = document.querySelectorAll('.titles a');
@@ -47,14 +47,14 @@
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles';
 
-  function generateTitleLinks(){
-
+  const generateTitleLinks = function(){
     /* remove contents of titleList */
     const titleList = document.querySelector(optTitleListSelector).innerHTML = '';
-    /* for each article */
+    
     const articles = document.querySelectorAll(optArticleSelector);
     console.log(articles);
     let html = '';
+    /* for each article */
     for(let article of articles){
       /* get the article id */
       const articleId = article.getAttribute('id');
@@ -70,14 +70,14 @@
     }
 
     titleList.innerHTML = html;
-    
+
     const links = document.querySelectorAll('.titles a');
     console.log(links);
     
     for(let link of links){
       link.addEventListener('click', titleClickHandler);
     }
-  }
+  };
 
   generateTitleLinks();
 }
