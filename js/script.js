@@ -187,7 +187,7 @@
     for(let equalAuthorLink of equalAuthorLinks){
       equalAuthorLink.classList.add('active');
     }
-    generateTitleLinks('[data-author~="' + author + '"]');
+    generateTitleLinks('[data-author="' + author + '"]');
   }
 
   function addClickListenersToAuthors(){
