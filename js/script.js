@@ -39,7 +39,6 @@
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list',
     optArticleAuthorSelector = '.post-author';
-    /* optAuthorsListSelector = '.sidebar .authors'; */
 
   const generateTitleLinks = function(customSelector = ''){
     /* remove contents of titleList */
@@ -161,10 +160,43 @@
     for(let article of articles){
       const authorsWrapper = article.querySelector(optArticleAuthorSelector);
       const articleAuthor = article.getAttribute('data-author');
-      const articleAuthorLink = articleAuthor.replace(' ', '');
-      authorsWrapper.innerHTML ='by ' + '<a href="#author-' + articleAuthorLink + '">' + articleAuthor + '</a>';
+      authorsWrapper.innerHTML ='by ' + '<a href="#author-' + articleAuthor + '">' + articleAuthor + '</a></li>';
       console.log(authorsWrapper);
     }
   }
   generateAuthors();
+
+  const authorClickHandler = function(event){
+    event.preventDefault();
+    const clickedElement = this;
+    console.log('pod tym powinno byc clicked element');
+    console.log(clickedElement);
+    const correctClickedElement = clickedElement.querySelector('a');
+    console.log(correctClickedElement);
+    const href = correctClickedElement.getAttribute('href');
+    console.log(href);
+    const author = href.substring(8)
+    console.log(author);
+    const activeAuthorLinks = document.querySelectorAll('a.active[href^="#author-"]');
+    console.log(activeAuthorLinks);
+    for(let activeAuthorLink of activeAuthorLinks){
+      activeAuthorLink.classList.remove('active');
+    }
+    const equalAuthorLinks = document.querySelectorAll('a[href="' + href + '"]');
+    console.log(equalAuthorLinks);
+    for(let equalAuthorLink of equalAuthorLinks){
+      equalAuthorLink.classList.add('active');
+    }
+    generateTitleLinks('[data-author~="' + author + '"]');
+  }
+
+  function addClickListenersToAuthors(){
+    const AuthorsLinks = document.querySelectorAll(optArticleAuthorSelector);
+    console.log(AuthorsLinks);
+    for(let AuthorsLink of AuthorsLinks){
+      AuthorsLink.addEventListener('click', authorClickHandler);
+    }
+  }
+  
+  addClickListenersToAuthors();
 }
