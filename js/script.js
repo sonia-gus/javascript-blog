@@ -38,7 +38,8 @@
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list',
-    optArticleAuthorSelector = '.post-author';
+    optArticleAuthorSelector = '.post-author',
+    optTagsListSelector = '.sidebar .tags';
 
   const generateTitleLinks = function(customSelector = ''){
     /* remove contents of titleList */
@@ -76,6 +77,7 @@
   generateTitleLinks();
 
   function generateTags(){
+    let allTags = [];
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
     /* START LOOP: for every article: */
@@ -98,6 +100,9 @@
         /* add generated code to html variable */
         html= html + linkHTML;
         console.log(html);
+        if(allTags.indexOf(linkHTML) == -1){
+          allTags.push(linkHTML);
+        }
       /* END LOOP: for each tag */
       }
       /* insert HTML of all the links into the tags wrapper */
@@ -105,6 +110,10 @@
       console.log(tagsWrapper);
     /* END LOOP: for every article: */
     }
+    const tagList = document.querySelector(optTagsListSelector);
+    console.log(tagList);
+    console.log(allTags);
+    tagList.innerHTML = allTags.join(' ');
   }
   generateTags();
 
