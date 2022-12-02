@@ -21,7 +21,8 @@
 
     /* [DONE] get 'href' attribute from the clicked link */
     let hrefAttribute = clickedElement.getAttribute('href');
-    hrefAttribute = hrefAttribute.substring(1);
+    const deletingHashtag = 1;
+    hrefAttribute = hrefAttribute.substring(deletingHashtag);
 
     /* [DONE] find the correct article using the selector (value of 'href' attribute) */
     const rightArticle = document.getElementById(hrefAttribute);
@@ -175,7 +176,8 @@
     const clickedElement = this;
     const correctClickedElement = clickedElement.querySelector('a');
     const href = correctClickedElement.getAttribute('href');
-    const author = href.substring(8);
+    const firstRightStringOfAuthor = 8;
+    const author = href.substring(firstRightStringOfAuthor);
     const activeAuthorLinks = document.querySelectorAll('a.active[href^="#author-"]');
     for(let activeAuthorLink of activeAuthorLinks){
       activeAuthorLink.classList.remove('active');
