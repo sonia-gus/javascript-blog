@@ -200,14 +200,12 @@
             allAuthors[articleAuthor]++;
         }
     }
-    console.log(allAuthors);
     let allAuthorHTML = '';
     for(let author in allAuthors){
       const linkHTML = '<li><a href="#tag-' + author + '">' + author + '</a>' + ' (' + allAuthors[author] + ') ' + '</li>';
       allAuthorHTML += linkHTML;
     }
     authorsList.innerHTML = allAuthorHTML;
-    console.log(allAuthorHTML);
   }
   generateAuthors();
 
