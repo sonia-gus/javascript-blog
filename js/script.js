@@ -1,4 +1,16 @@
 {
+  const opts = {
+    optArticleSelector: '.post',
+    optTitleSelector: '.post-title',
+    optTitleListSelector: '.titles',
+    optArticleTagsSelector: '.post-tags .list',
+    optArticleAuthorSelector: '.post-author',
+    optTagsListSelector: '.sidebar .tags',
+    optCloudClassCount: 5,
+    optCloudClassPrefix: 'tag-size-',
+    optAuthorsListSelector: '.sidebar .authors'
+  };
+
   const titleClickHandler = function(event){
     event.preventDefault();
     const clickedElement = this;
@@ -30,16 +42,6 @@
     /* [DONE] add class 'active' to the correct article */
     rightArticle.classList.add('active');
   };
-  
-  const optArticleSelector = '.post',
-    optTitleSelector = '.post-title',
-    optTitleListSelector = '.titles',
-    optArticleTagsSelector = '.post-tags .list',
-    optArticleAuthorSelector = '.post-author',
-    optTagsListSelector = '.sidebar .tags',
-    optCloudClassCount = 5,
-    optCloudClassPrefix = 'tag-size-',
-    optAuthorsListSelector = '.sidebar .authors';
 
   const generateTitleLinks = function(customSelector = ''){
     /* remove contents of titleList */
