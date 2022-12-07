@@ -1,15 +1,13 @@
 {
-  const opts = {
-    optArticleSelector: '.post',
-    optTitleSelector: '.post-title',
-    optTitleListSelector: '.titles',
-    optArticleTagsSelector: '.post-tags .list',
-    optArticleAuthorSelector: '.post-author',
-    optTagsListSelector: '.sidebar .tags',
-    optCloudClassCount: 5,
-    optCloudClassPrefix: 'tag-size-',
-    optAuthorsListSelector: '.sidebar .authors'
-  };
+  const  optArticleSelector = '.post',
+    optTitleSelector = '.post-title',
+    optTitleListSelector = '.titles',
+    optArticleTagsSelector = '.post-tags .list',
+    optArticleAuthorSelector = '.post-author',
+    optTagsListSelector = '.sidebar .tags',
+    optCloudClassCount = 5,
+    optCloudClassPrefix = 'tag-size-',
+    optAuthorsListSelector = '.sidebar .authors'
 
   const titleClickHandler = function(event){
     event.preventDefault();
