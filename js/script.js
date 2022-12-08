@@ -9,6 +9,10 @@
     optCloudClassPrefix = 'tag-size-',
     optAuthorsListSelector = '.sidebar .authors'
 
+    const templates = {
+      articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+    };
+
   const titleClickHandler = function(event){
     event.preventDefault();
     const clickedElement = this;
@@ -55,7 +59,8 @@
       /* find the title element and get the title from the title element */
       const articleTitle = article.querySelector(optTitleSelector).innerHTML;
       /* create HTML of the link */
-      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHTML = templates.articleLink(linkHTMLData);
       /* insert link into titleList */
       html = html + linkHTML;
     }
@@ -109,7 +114,8 @@
       /* START LOOP: for each tag */
       for(let tag of articleTagsArray){
         /* generate HTML of the link */
-        const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+        const linkHTMLData = {id: 'tag-' + tag, title: tag};
+        const linkHTML = templates.articleLink(linkHTMLData);
         /* add generated code to html variable */
         html= html + linkHTML;
         /* [NEW] check if this link is NOT already in allTags */
@@ -139,7 +145,6 @@
     }
     /*[NEW] add HTML from allTagsHTML to tagList */
     tagList.innerHTML = allTagsHTML;
-    console.log(allTagsHTML);
   }
   generateTags();
 
@@ -191,9 +196,11 @@
     const authorsList = document.querySelector(optAuthorsListSelector);
     const articles = document.querySelectorAll(optArticleSelector);
     for(let article of articles){
-      const authorsWrapper = article.querySelector(optArticleAuthorSelector);
       const articleAuthor = article.getAttribute('data-author');
-      authorsWrapper.innerHTML ='by ' + '<a href="#author-' + articleAuthor + '">' + articleAuthor + '</a></li>';
+      const authorsWrapper = article.querySelector(optArticleAuthorSelector);
+      const linkHTMLData = {id: 'author-' + articleAuthor, title: articleAuthor};
+      const linkHTML = templates.articleLink(linkHTMLData);
+      authorsWrapper.innerHTML = linkHTML;
       if(!allAuthors[articleAuthor]){
           allAuthors[articleAuthor] = 1;
         } else {
